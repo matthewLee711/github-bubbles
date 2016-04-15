@@ -28,7 +28,9 @@
     <script>
       	var circle = d3.selectAll("circle");
 		circle.style("fill", "steelblue");
+		//reassign attributes
 		circle.attr("r", 30);
+		//can append data to circle
 		circle.data([32, 57, 112]);
 
 		//passing data from circle into function
