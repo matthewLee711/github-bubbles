@@ -4,13 +4,20 @@
 	<head>
 		<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 		<script type="js/d3bubbles.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/index.css">
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	</head>
 	
 	<body>
-		<h1>Hello</h1>
+		<div class="jumbotron">
+			<h1>Hello,</h1>
+			<p>These are a few of my bubbles which will soon takeover this screen in a few weeks. </p> <p>Press buttons to try it out!.</p>
+		</div>
+		<button class="btn btn-primary" onclick="updateBubble()">Combine</button>
+		<button class="btn btn-primary" onclick="randomBubble()">Spread</button>
+		
     <svg width="720" height="120">
         <circle cx="40" cy="60" r="10"></circle>
         <circle cx="80" cy="60" r="10"></circle>
@@ -28,6 +35,17 @@
 		circle.attr("r", function(d){return Math.sqrt(d); });
 		//circles randomly placed
 		circle.attr("cx", function() { return Math.random() * 720; });
+		
+		//Moves circle to another position
+		function updateBubble() {
+			
+			circle.transition().attr("cx", Math.random() * 720);
+		}
+		function randomBubble() {
+			
+			circle.transition().attr("cx", function(d) { return Math.random(d) * 720; });
+		}
+
     </script>
 
 
