@@ -3,14 +3,14 @@
 <html>
 	<head>
 		<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-		<script type="js/d3bubbles.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/index.css">
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    	<script src="js/d3bubbles.js"></script>
 	</head>
 	
-	<body>
+	<body onload="run()">
 		<div class="jumbotron">
 			<h1>Hello,</h1>
 			<p>These are a few of my bubbles which will soon takeover this screen in a few weeks. </p> <p>Press buttons to try it out!.</p>
@@ -25,31 +25,15 @@
     </svg>
     
     <!-- experimental scripts -->
+    
+
     <script>
-      	var circle = d3.selectAll("circle");
-		circle.style("fill", "steelblue");
-		//reassign attributes
-		circle.attr("r", 30);
-		//can append data to circle
-		circle.data([32, 57, 112]);
-
-		//passing data from circle into function
-		circle.attr("r", function(d){return Math.sqrt(d); });
-		//circles randomly placed
-		circle.attr("cx", function() { return Math.random() * 720; });
-		
-		//Moves circle to another position
-		function updateBubble() {
-			
-			circle.transition().attr("cx", Math.random() * 720);
-		}
-		function randomBubble() {
-			
-			circle.transition().attr("cx", function(d) { return Math.random(d) * 720; });
-		}
-
+  //   	$.get( "test.php", function( data ) {
+		//   $( "body" )
+		//     .append( "Name: " + data.name ) // John
+		//     .append( "Time: " + data.time ); //  2pm
+		// }, "json" );
     </script>
-
 
 	</body>
 	
