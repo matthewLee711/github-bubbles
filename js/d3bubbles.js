@@ -22,3 +22,15 @@ function randomBubble() {
 	
 	circle.transition().attr("cx", function(d) { return Math.random(d) * 720; });
 }
+
+//create class for circle
+//loop through array for languages -- for each language, grab information
+//store information into json
+//instantiate circle object and put information into bubble from json
+//each bubble is proportionally sized based on information
+//location is checked to see if bubble can be placed there
+
+var circleClass = function() {
+	var circle = d3.selectAll("circle");
+}
+
