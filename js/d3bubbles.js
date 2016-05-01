@@ -33,8 +33,6 @@ d3.json("bubbles.json", function(error, data) {
 	//find proportions to circle
 	var total = 0;
 
-	console.log(data.languages);
-	// console.log(data.languages[1].repositories);
 	//find proportions to size cicles
 	for(var i = 0; i < data.languages.length; i++) {
 		total = total + Number(data.languages[i].repositories);
@@ -43,21 +41,25 @@ d3.json("bubbles.json", function(error, data) {
 	// 	circle.data([i]).append(Number(data.languages[i].repositories)/total);
 	// }
 	//proportionally assign each circle size
-	circle.data([Number(data.languages[0].repositories)/total * 1000, 
-			Number(data.languages[1].repositories)/total * 1000,
-			Number(data.languages[2].repositories)/total * 1000,
-			Number(data.languages[3].repositories)/total * 1000,
-			Number(data.languages[4].repositories)/total * 1000,
-			Number(data.languages[5].repositories)/total * 1000,
-			Number(data.languages[6].repositories)/total * 1000,
-			Number(data.languages[7].repositories)/total * 1000,
-			Number(data.languages[8].repositories)/total * 1000]);
+	circle.data([Number(data.languages[0].repositories)/total * 4000, 
+			Number(data.languages[1].repositories)/total * 4000,
+			Number(data.languages[2].repositories)/total * 4000,
+			Number(data.languages[3].repositories)/total * 4000,
+			Number(data.languages[4].repositories)/total * 4000,
+			Number(data.languages[5].repositories)/total * 4000,
+			Number(data.languages[6].repositories)/total * 4000,
+			Number(data.languages[7].repositories)/total * 4000,
+			Number(data.languages[8].repositories)/total * 4000]);
 	
+	var color = d3.scale.category20();
+	console.log(color(0))
+	console.log(circle.data(1))
 	//passing data from circle into function
 	circle.attr("r", function(d){return Math.sqrt(d); });
 	//circles randomly placed
 	circle.attr("cx", function() { return Math.random() * 720; });
-	
+	//circles given random color
+	circle.style("fill", function(d, i) { return color(i); });
 
 });
 
