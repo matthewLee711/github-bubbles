@@ -24,9 +24,11 @@ function randomBubble() {
 	var circle = d3.selectAll("circle");
 	circle.transition().attr("cx", function(d) { return Math.random(d) * 720; });
 }
-
+d3.json("../temp.json", function(error, data) {
+	console.log(data);
+});
 d3.json("bubbles.json", function(error, data) {
-	//if (error) throw error;
+	if (error) throw error;
 	console.log(data);
 	//grab all circle objects
 	var circle = d3.selectAll("circle");
@@ -34,22 +36,23 @@ d3.json("bubbles.json", function(error, data) {
 	var total = 0;
 
 	//find proportions to size cicles
-	for(var i = 0; i < data.languages.length; i++) {
-		total = total + Number(data.languages[i].repositories);
+	for(var i = 0; i < data.length; i++) {
+		total = total + Number(data[i].repositories);
 	}
-	// for(var i = 0; i < data.languages.length; i++) {
-	// 	circle.data([i]).append(Number(data.languages[i].repositories)/total);
+	// for(var i = 0; i < data.length; i++) {
+	// 	circle.data([i]).append(Number(data[i].repositories)/total);
 	// }
+
 	//proportionally assign each circle size
-	circle.data([Number(data.languages[0].repositories)/total * 4000, 
-			Number(data.languages[1].repositories)/total * 4000,
-			Number(data.languages[2].repositories)/total * 4000,
-			Number(data.languages[3].repositories)/total * 4000,
-			Number(data.languages[4].repositories)/total * 4000,
-			Number(data.languages[5].repositories)/total * 4000,
-			Number(data.languages[6].repositories)/total * 4000,
-			Number(data.languages[7].repositories)/total * 4000,
-			Number(data.languages[8].repositories)/total * 4000]);
+	circle.data([Number(data[0].repositories)/total * 4000, 
+			Number(data[1].repositories)/total * 4000,
+			Number(data[2].repositories)/total * 4000,
+			Number(data[3].repositories)/total * 4000,
+			Number(data[4].repositories)/total * 4000,
+			Number(data[5].repositories)/total * 4000,
+			Number(data[6].repositories)/total * 4000,
+			Number(data[7].repositories)/total * 4000,
+			Number(data[8].repositories)/total * 4000]);
 	//generates random color
 	var color = d3.scale.category20();
 	//passing data from circle into function
@@ -60,9 +63,11 @@ d3.json("bubbles.json", function(error, data) {
 	circle.style("fill", function(d, i) { return color(i); });
 	//click on circle reveals more information
 	circle.on("click", function(d, i){
-		console.log("hey");
-		d3.select("h6").select("p").remove();
-		d3.select("h6").append("p").text(data.languages[i].repositories);
+		d3.select("h6").selectAll("p").remove();
+		d3.select("h6").append("p")
+			.text("That bubble you clicked is.. " + data[i].name +"!");
+		d3.select("h6").append("p")	
+			.text("and it has " + data[i].repositories + " repositories");
 	});
 
 });
