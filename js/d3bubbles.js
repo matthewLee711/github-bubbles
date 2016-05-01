@@ -26,8 +26,8 @@ function randomBubble() {
 }
 
 d3.json("bubbles.json", function(error, data) {
-	if (error) throw error;
-	
+	//if (error) throw error;
+	console.log(data);
 	//grab all circle objects
 	var circle = d3.selectAll("circle");
 	//find proportions to circle
@@ -50,16 +50,20 @@ d3.json("bubbles.json", function(error, data) {
 			Number(data.languages[6].repositories)/total * 4000,
 			Number(data.languages[7].repositories)/total * 4000,
 			Number(data.languages[8].repositories)/total * 4000]);
-	
+	//generates random color
 	var color = d3.scale.category20();
-	console.log(color(0))
-	console.log(circle.data(1))
 	//passing data from circle into function
 	circle.attr("r", function(d){return Math.sqrt(d); });
 	//circles randomly placed
 	circle.attr("cx", function() { return Math.random() * 720; });
-	//circles given random color
+	//circles given the generated random color
 	circle.style("fill", function(d, i) { return color(i); });
+	//click on circle reveals more information
+	circle.on("click", function(d, i){
+		console.log("hey");
+		d3.select("h6").select("p").remove();
+		d3.select("h6").append("p").text(data.languages[i].repositories);
+	});
 
 });
 
