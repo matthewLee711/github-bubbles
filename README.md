@@ -15,3 +15,9 @@ OR
 Node
 > npm install http-server -g
 > http-server
+
+OR
+
+In command line
+> npm install -g serve
+> serve

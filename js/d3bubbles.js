@@ -4,6 +4,7 @@ function run(){
 	circle.style("fill", "steelblue");
 	//reassign attributes
 	circle.attr("r", 30);
+
 	//can append data to circle
 	circle.data([32, 57, 112]);
 
@@ -15,13 +16,50 @@ function run(){
 
 //Moves circle to another position
 function updateBubble() {
-	
+	var circle = d3.selectAll("circle");
 	circle.transition().attr("cx", Math.random() * 720);
 }
+//sends bubbles all over the place
 function randomBubble() {
-	
+	var circle = d3.selectAll("circle");
 	circle.transition().attr("cx", function(d) { return Math.random(d) * 720; });
 }
+
+d3.json("bubbles.json", function(error, data) {
+	if (error) throw error;
+	
+	//grab all circle objects
+	var circle = d3.selectAll("circle");
+	//find proportions to circle
+	var total = 0;
+
+	console.log(data.languages);
+	// console.log(data.languages[1].repositories);
+	//find proportions to size cicles
+	for(var i = 0; i < data.languages.length; i++) {
+		total = total + Number(data.languages[i].repositories);
+	}
+	// for(var i = 0; i < data.languages.length; i++) {
+	// 	circle.data([i]).append(Number(data.languages[i].repositories)/total);
+	// }
+	//proportionally assign each circle size
+	circle.data([Number(data.languages[0].repositories)/total * 1000, 
+			Number(data.languages[1].repositories)/total * 1000,
+			Number(data.languages[2].repositories)/total * 1000,
+			Number(data.languages[3].repositories)/total * 1000,
+			Number(data.languages[4].repositories)/total * 1000,
+			Number(data.languages[5].repositories)/total * 1000,
+			Number(data.languages[6].repositories)/total * 1000,
+			Number(data.languages[7].repositories)/total * 1000,
+			Number(data.languages[8].repositories)/total * 1000]);
+	
+	//passing data from circle into function
+	circle.attr("r", function(d){return Math.sqrt(d); });
+	//circles randomly placed
+	circle.attr("cx", function() { return Math.random() * 720; });
+	
+
+});
 
 //create class for circle
 //loop through array for languages -- for each language, grab information
@@ -30,7 +68,7 @@ function randomBubble() {
 //each bubble is proportionally sized based on information
 //location is checked to see if bubble can be placed there
 
-var circleClass = function() {
-	var circle = d3.selectAll("circle");
-}
+// var circleClass = function() {
+// 	var circle = d3.selectAll("circle");
+// }
 
