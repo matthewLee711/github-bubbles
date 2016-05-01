@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 
 # cgitb.enable()
 
-languages = ("c++", "java", "javacript", "python", "css", "php", "ruby",\
+languages = ("c++", "java", "swift", "python", "css", "php", "ruby",\
 	"c", "shell") 
 	# "r", "go", "perl", "swift", "coffeescript", "clojure"\
 	# "arduino", "matlab")
