@@ -24,9 +24,7 @@ function randomBubble() {
 	var circle = d3.selectAll("circle");
 	circle.transition().attr("cx", function(d) { return Math.random(d) * 720; });
 }
-d3.json("../temp.json", function(error, data) {
-	console.log(data);
-});
+
 d3.json("bubbles.json", function(error, data) {
 	if (error) throw error;
 	console.log(data);
@@ -71,6 +69,23 @@ d3.json("bubbles.json", function(error, data) {
 	});
 
 });
+
+function updateBubbles() {
+	$.ajax({
+         	type: 'GET',
+			//contentType: 'application/json',
+         	url: "http://localhost:3000/scraper.py",
+         	//dataType: "json",
+         	success: function(response){
+			//alert(response);
+			console.log("yay");
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+			console.log("fail");
+			console.log(jqXHR, textStatus, errorThrown);
+		}
+	});	
+}
 
 //create class for circle
 //loop through array for languages -- for each language, grab information
