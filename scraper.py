@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 
 cgitb.enable()
 
-# activate this when put on server
+# Checks if CGI is working
 # print "Content-Type: text/html\n\n"
 # print "Hello World!"
 
@@ -53,7 +53,7 @@ for name in langs:
 with open('temp.json', 'w') as json_write:
     json.dump(langs, json_write)
 
-#replace current file 
+#replace bubbles information with updated information 
 os.replace('temp.json', 'bubbles.json')
 
 form = cgi.FieldStorage() 

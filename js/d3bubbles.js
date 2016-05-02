@@ -1,19 +1,3 @@
-function run(){
-	console.log("in run");
-	var circle = d3.selectAll("circle");
-	circle.style("fill", "steelblue");
-	//reassign attributes
-	circle.attr("r", 30);
-
-	//can append data to circle
-	circle.data([32, 57, 112]);
-
-	//passing data from circle into function
-	circle.attr("r", function(d){return Math.sqrt(d); });
-	//circles randomly placed
-	circle.attr("cx", function() { return Math.random() * 720; });
-}
-
 //Moves circle to another position
 function updateBubble() {
 	var circle = d3.selectAll("circle");
@@ -23,6 +7,78 @@ function updateBubble() {
 function randomBubble() {
 	var circle = d3.selectAll("circle");
 	circle.transition().attr("cx", function(d) { return Math.random(d) * 720; });
+}
+
+//Orders bubbles from largest to smallest
+function orderBubble() {
+	var circle = d3.selectAll("circle");
+	
+	d3.json("bubbles.json", function(error, data) {
+		//store bubbles to be ordered
+		var order = []
+		for(var i = 0; i < data.length; i++) {
+			order.push(data[i].repositories);
+		}
+		//order bubbles
+		var force = 0;
+		var stop = true; 
+		var point1 = 0;//point 1 -- start first index
+		var point2 = 1;//point 2 -- start second index willl do swaps
+		var tempStore = 0;
+		while(stop != false) {
+			//if number 1 is less than than number 2, swap
+			if(Number(order[point1]) < Number(order[point2])) {
+				tempStore = order[point1]; // temp store point1
+				order[point1] = order[point2]; //move pt2 to pt1 position
+				order[point2] = tempStore; // move point 1 down
+				//Check if number reach top position
+				if(order[point1 - 1] == null) {
+					console.log("nope");
+				}
+				//iterate backwards to keep moving number to top
+				else {
+					point1 -= 1;
+					point2 -= 1;
+				}
+			}
+			//move to next number set if point 1 is greater than point 2
+			else if(Number(order[point2]) < Number(order[point1]) && order[point2 + 1] != null) {
+				point1 += 1;//move to next number to check
+				point2 += 1;
+			}
+			//end if all numbers are ordered
+			else if(order[point2 + 1] == null) {
+				break;
+			}
+			force += 1;
+			if(force >= 1000) {
+				break;
+			}
+		}
+		console.log("final");
+		console.log(order);
+
+		var placement = [10, 40, 70, 110, 140, 170, 200, 230, 260];
+		var counter = 0;
+		var go = true;
+		//Each bubble is ordered
+		circle.transition().attr("cx", function(d, i) { 
+			counter = 0;
+			while(go != false) {
+				if(data[i].repositories == order[counter]) {
+					return placement[counter];
+				}
+				else {
+					counter += 1;
+				}
+				if(counter >= 1000) {
+					break;
+				}
+			}
+			
+		});
+	});
+	
 }
 
 d3.json("bubbles.json", function(error, data) {
@@ -86,15 +142,4 @@ function updateBubbles() {
 		}
 	});	
 }
-
-//create class for circle
-//loop through array for languages -- for each language, grab information
-//store information into json
-//instantiate circle object and put information into bubble from json
-//each bubble is proportionally sized based on information
-//location is checked to see if bubble can be placed there
-
-// var circleClass = function() {
-// 	var circle = d3.selectAll("circle");
-// }
 
