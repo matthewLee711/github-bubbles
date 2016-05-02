@@ -1,6 +1,13 @@
 .jumbotron{
 	text-align: center;
 }
+#mainJumbo{
+	background: url(../img/poly.jpg) no-repeat center center;
+	color: white;
+}
+.centerDat{
+	text-align: center;
+}
 
 svg{
 	padding-left: 20%;

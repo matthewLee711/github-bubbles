@@ -15,14 +15,9 @@ cgitb.enable()
 
 languages = ("c++", "java", "swift", "python", "css", "php", "ruby",\
 	"perl", "shell") 
-	# "r", "go", "perl", "swift", "coffeescript", "clojure"\
-	# "arduino", "matlab")
+#Store repository numbers for each language
 numbers = []
 
-#to start python server
-http = urllib3.PoolManager()#allows requests to multiple hosts
-
-#need to add  nav class=menu to narrow search
 #Extracts information from github 
 for language in languages:
 	#Extracts html from github 
@@ -38,14 +33,14 @@ for language in languages:
 		numbers.append(number)
 		print(number)
 
-#convert langauge information into json
-#opens json file to extract data to be changed
+#Convert langauge information into json
+#Opens json file to extract data to be changed
 with open('bubbles.json') as json_file:
     json_data = json.load(json_file)
-#langs = json_data['languages']
 langs = json_data
+
+#Updates json file with new github information
 i = 0
-#updates json file with new github information
 for name in langs:
     name['repositories'] = numbers[i]#each num is appended to repository 
     i = i + 1
@@ -53,9 +48,7 @@ for name in langs:
 with open('temp.json', 'w') as json_write:
     json.dump(langs, json_write)
 
-#replace bubbles information with updated information 
+#replace bubbles information with updated information in temp
 os.replace('temp.json', 'bubbles.json')
 
 form = cgi.FieldStorage() 
-#msg = form.getvalue('msg')
-# print(json.JSONEncoder().encode())

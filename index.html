@@ -25,40 +25,41 @@
     	<script src="js/d3bubbles.js"></script>
 	</head>
 	
-	<body onload="run()">
-		<div class="jumbotron">
+	<body>
+		<div class="jumbotron" id="mainJumbo">
 			<h1>Hello,</h1>
-			<p>These are a few of my bubbles which will soon takeover this screen in a few weeks. </p> <p>Press buttons to try it out!.</p>
+			<p>We all have our favorite programming language, is your language the most popular?</p> <p>Press buttons to try it out!</p>
 		</div>
-		<p>Click on the bubbles to reveal more information. Also try pressing buttons to see what happens!</p>
+		
+		<div class="centerDat">
+			<p>Click on the bubbles to reveal more information. Also try pressing buttons to see what happens!</p>
+			<button class="btn btn-primary" onclick="updateBubble()">Combine</button>
+			<button class="btn btn-primary" onclick="randomBubble()">Spread</button>
+			<button class="btn btn-primary" onclick="orderBubble()">Order</button>
+			<button class="btn btn-primary" onclick="updateBubbles()" method="GET">Update</button>
+			<!-- <form action="" method="GET">
+			  <button class="btn btn-primary" value = "get">
+			</form> -->
+		</div>
+		<br>
+		
+		<!-- "c++", "java", "javacript", "python", "css", "php", "ruby", "c", "shell" -->
+	    <svg width="100%" height="120">
+	        <circle cx="40" cy="60" r="10" style="cursor:pointer"></circle> 
+	        <circle cx="80" cy="60" r="10" style="cursor:pointer"></circle> 
+	        <circle cx="120" cy="60" r="10" style="cursor:pointer"></circle> 
+	        <circle cx="40" cy="60" r="10" style="cursor:pointer"></circle> 
+	        <circle cx="80" cy="60" r="10" style="cursor:pointer"></circle> 
+	        <circle cx="120" cy="60" r="10" style="cursor:pointer"></circle> 
+	        <circle cx="40" cy="60" r="10" style="cursor:pointer"></circle> 
+	        <circle cx="80" cy="60" r="10" style="cursor:pointer"></circle> 
+	        <circle cx="120" cy="60" r="10" style="cursor:pointer"></circle> 
+	    </svg>
 
-		<button class="btn btn-primary" onclick="updateBubble()">Combine</button>
-		<button class="btn btn-primary" onclick="randomBubble()">Spread</button>
-		<button class="btn btn-primary" onclick="updateBubbles()">Update</button>
-		<button class="btn btn-primary" onclick="orderBubble()">Order</button>
-		<form action="" method="GET">
-		  <input type="text" value="" name="myfield">
-		  <input type="submit" value = "get">
-		</form>
-
-	<!-- "c++", "java", "javacript", "python", "css", "php", "ruby",\
-	"c", "shell" -->
-    <svg width="100%" height="120">
-        <circle cx="40" cy="60" r="10" style="cursor:pointer"></circle> <!-- c++ -->
-        <circle cx="80" cy="60" r="10" style="cursor:pointer"></circle> <!-- java -->
-        <circle cx="120" cy="60" r="10" style="cursor:pointer"></circle> <!-- js -->
-        <circle cx="40" cy="60" r="10" style="cursor:pointer"></circle> <!-- c++ -->
-        <circle cx="80" cy="60" r="10" style="cursor:pointer"></circle> <!-- java -->
-        <circle cx="120" cy="60" r="10" style="cursor:pointer"></circle> <!-- js -->
-        <circle cx="40" cy="60" r="10" style="cursor:pointer"></circle> <!-- c++ -->
-        <circle cx="80" cy="60" r="10" style="cursor:pointer"></circle> <!-- java -->
-        <circle cx="120" cy="60" r="10" style="cursor:pointer"></circle> <!-- js -->
-    </svg>
-
-    <div class="jumbotron">
-		<h3>Tidbit of infomation about your bubble</h3>
-		<h6><p>Click on a bubble for information!</p><p>😀</p></h6>	
-	</div>
+	    <div class="jumbotron">
+			<h3>Tidbit of infomation about your bubble</h3>
+			<h6><p>Click on a bubble for information!</p><p>😀</p></h6>	
+		</div>
 
 
 	</body>

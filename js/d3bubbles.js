@@ -3,7 +3,7 @@ function updateBubble() {
 	var circle = d3.selectAll("circle");
 	circle.transition().attr("cx", Math.random() * 720);
 }
-//sends bubbles all over the place
+//Sends bubbles all over the place
 function randomBubble() {
 	var circle = d3.selectAll("circle");
 	circle.transition().attr("cx", function(d) { return Math.random(d) * 720; });
@@ -80,7 +80,7 @@ function orderBubble() {
 	});
 	
 }
-
+//This function gives bubbles each attribute -- color,size,clickable
 d3.json("bubbles.json", function(error, data) {
 	if (error) throw error;
 	console.log(data);
@@ -93,9 +93,6 @@ d3.json("bubbles.json", function(error, data) {
 	for(var i = 0; i < data.length; i++) {
 		total = total + Number(data[i].repositories);
 	}
-	// for(var i = 0; i < data.length; i++) {
-	// 	circle.data([i]).append(Number(data[i].repositories)/total);
-	// }
 
 	//proportionally assign each circle size
 	circle.data([Number(data[0].repositories)/total * 4000, 
@@ -107,6 +104,7 @@ d3.json("bubbles.json", function(error, data) {
 			Number(data[6].repositories)/total * 4000,
 			Number(data[7].repositories)/total * 4000,
 			Number(data[8].repositories)/total * 4000]);
+	
 	//generates random color
 	var color = d3.scale.category20();
 	//passing data from circle into function
