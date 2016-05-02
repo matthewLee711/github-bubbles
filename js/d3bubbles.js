@@ -58,7 +58,7 @@ function orderBubble() {
 		console.log("final");
 		console.log(order);
 
-		var placement = [10, 40, 70, 110, 140, 170, 200, 230, 260];
+		var placement = [100, 200, 300, 400, 500, 600, 700, 800, 900];
 		var counter = 0;
 		var go = true;
 		//Each bubble is ordered

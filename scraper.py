@@ -13,10 +13,12 @@ cgitb.enable()
 # print "Content-Type: text/html\n\n"
 # print "Hello World!"
 
-languages = ("c++", "java", "swift", "python", "css", "php", "ruby",\
+languages = ("haskell", "java", "swift", "python", "css", "php", "ruby",\
 	"perl", "shell") 
 #Store repository numbers for each language
 numbers = []
+#Create pool manager to allow multiple requests
+http = urllib3.PoolManager()
 
 #Extracts information from github 
 for language in languages:
